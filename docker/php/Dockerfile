@@ -1,4 +1,5 @@
 FROM php:8.0-fpm-buster
+
 COPY --from=composer:2.0 /usr/bin/composer /usr/bin/composer
 
 RUN apt-get update && \
@@ -8,5 +9,6 @@ RUN apt-get update && \
   docker-php-ext-install intl pdo_mysql zip bcmath
 
 COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
+
 
 WORKDIR /work
