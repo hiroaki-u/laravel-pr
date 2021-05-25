@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostController@index');
+Route::get('post/index', 'PostController@index');
 
-// route::group(["prefix" => 'post', "middleware" => "auth"], function () {
-//     Route::get("post/index", "PostController");
-// });
-Route::resource("post", 'PostController');
+route::group(["middleware" => "auth"], function () {
+  Route::resource("post", 'PostController')->except(["index", "show", "edit"]);
+  Route::get('post/edit/{id}', 'PostController@edit')->name('post.edit');
+});
+Route::get('post/show/{id}', 'PostController@show')->name('post.show');
 
 
 

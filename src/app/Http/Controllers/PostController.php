@@ -16,9 +16,8 @@ class PostController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-        $posts = Post::all();
-        return view('post.index', compact('posts', 'user'));
+        $posts = Post::all()->sortByDesc("created_at");
+        return view('post.index', compact('posts'));
     }
     public function show($id)
     {
