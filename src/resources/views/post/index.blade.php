@@ -16,7 +16,7 @@
                 @foreach ($posts as $post)
                     <tr>
                         <td>{{ $post->user->name }}</td>
-                        <td><a href="{{ route('post.show',[ 'id' => 1]) }}">{{ $post->content }}</a></td>
+                        <td><a href="{{ route('post.show',[ 'id' => $post->id]) }}">{{ $post->content }}</a></td>
                         <td>{{ $post->updated_at }}</td>
                     </tr>
                 @endforeach

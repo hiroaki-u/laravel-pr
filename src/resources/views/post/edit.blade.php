@@ -12,13 +12,13 @@
             {{ session('status') }}
         </div>
         @endif
-        <form action="{{ route('post.store') }}" method="POST">
+        <form action="{{ route('post.update', ['id' => $post->id]) }}" method="POST">
             @csrf
             <div class="form-group">
-            <textarea class="form-control" name="content" cols="30" rows="10" placeholder="こちらに入力してください"></textarea>
-            <input type="hidden" name="user_id" value="{{ $post->user_id }}">
+            <textarea class="form-control" name="content" cols="30" rows="10">{{ $post->content}}</textarea>
+
             </div>
-            <button type="submit" class="btn btn-primary">投稿する</button>
+            <button type="submit" class="btn btn-primary">更新する</button>
         </form>
         </div>
     </div>

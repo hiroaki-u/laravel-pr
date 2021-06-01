@@ -38,8 +38,13 @@ class PostController extends Controller
         $post->save();
         return redirect('post/index');
     }
-    public function update(Reauest $request, $id)
+    public function update(Request $request, $id)
     {
+        $post = Post::find($id);
+        $post->content = $request->input('content');
+
+        $post->save();
+        return redirect('post/index');
     }
     public function edit($id)
     {
@@ -49,8 +54,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        $post->destroy();
+        $post->delete();
 
-        return view("post/index");
+        return redirect("post/index");
     }
 }

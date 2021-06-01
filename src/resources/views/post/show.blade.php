@@ -21,10 +21,21 @@
                 </tbody>
             </table>
             <button class="btn btn-primary">
-                <a class="text-white" href="{{ route('post.edit',[ 'id' => 1]) }}">編集</a>
+                <a class="text-white" href="{{ route('post.edit',[ 'id' => $post->id]) }}">変更する</a>
             </button>
+            <form method="POST" action="{{ route('post.destroy',[ 'id' => $post->id ]) }}" id="delete_{{ $post->id }}">
+                @csrf
+                <a href="#" class="btn btn-danger" data-id="{{ $post->id }}" onclick="deletePost(this);">削除する</a>
+            </form>
         </div>
     </div>
 </div>
-
+<script>
+    function deletePost(e){
+        'use strict';
+        if(confirm('本当に削除して良いのか')){
+            document.getElementById('delete_'+e.dataset.id).submit();
+        }
+    }
+</script>
 @endsection
